@@ -41,8 +41,12 @@ io.on('connection', (socket) => {
       velocity,
       playerId: socket.id
     }
+    
+    setTimeout(() => {
+      io.emit('updateProjectiles', backEndProjectiles);
+    }, 200);
 
-    console.log(backEndProjectiles)
+    //console.log(backEndProjectiles)
   })
 
   socket.on('initGame', ({ username, width, height }) => {
@@ -152,7 +156,7 @@ setInterval(() => {
       }
     }
   }
-
+  
   io.emit('updateProjectiles', backEndProjectiles)
   io.emit('updatePlayers', backEndPlayers)
 }, 15)
