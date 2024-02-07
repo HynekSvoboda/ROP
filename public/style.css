@@ -1,0 +1,90 @@
+body 
+{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    margin: 0;
+    background: #000000;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    }
+
+input::placeholder 
+{
+    color: #94a3b8;
+}
+canvas 
+{
+    background-image: url('/img/webb-dark.png');
+    width: 100%;
+    object-fit: contain;
+}
+
+/*  @media screen and (max-width: 600px )and (max-height: 300px) {
+  
+}*/
+
+.leaderboard
+{
+    margin-bottom: 20px;
+    color: white;
+    font-size: large;
+    position: absolute;
+    bottom: 50%;
+    left: 5%;
+}
+
+.hracipole
+{
+    position:fixed;
+    color: white;
+    padding: 8px;
+    font-family: sans-serif;
+    font-size: 14px;
+    user-select: none;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.formumisteni
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+input
+{
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    background: #475569;
+    color: #f0f0f0;
+}
+
+button
+{
+    padding: 8px 20px;
+    width: 90px;
+    font-weight: bold;
+    border-radius: 100px;
+    border: none;
+    background-image: linear-gradient(
+        to right,
+        rgb(6, 212, 92),
+        rgb(59, 246, 174)
+    );
+    color: white;
+    cursor: pointer;
+}
+
+.buttonumisteni
+{
+    text-align: center; 
+    margin-top: 8px
+}
