@@ -12,6 +12,7 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
+const cors = require('cors');
 
 const corsOptions = {
   origin: 'http://172.105.250.91:8080/',  // or specify your frontend origin like 'http://yourfrontend.com'
