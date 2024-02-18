@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
-
+const axios = require('axios');
+// socket.io setup
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
@@ -41,10 +42,6 @@ io.on('connection', (socket) => {
       velocity,
       playerId: socket.id
     }
-    
-    setTimeout(() => {
-      io.emit('updateProjectiles', backEndProjectiles);
-    }, 200);
 
     //console.log(backEndProjectiles)
   })
@@ -59,6 +56,7 @@ io.on('connection', (socket) => {
       username
     }
 
+    // where we init our canvas
     backEndPlayers[socket.id].canvas = {
       width,
       height
@@ -116,7 +114,9 @@ io.on('connection', (socket) => {
   })
 })
 
+// backend ticker
 setInterval(() => {
+  // update projectile positions
   for (const id in backEndProjectiles) {
     backEndProjectiles[id].x += backEndProjectiles[id].velocity.x
     backEndProjectiles[id].y += backEndProjectiles[id].velocity.y
@@ -142,21 +142,47 @@ setInterval(() => {
         backEndProjectiles[id].y - backEndPlayer.y
       )
 
+      // collision detection
       if (
         DISTANCE < PROJECTILE_RADIUS + backEndPlayer.radius &&
         backEndProjectiles[id].playerId !== playerId
       ) {
         if (backEndPlayers[backEndProjectiles[id].playerId])
-          backEndPlayers[backEndProjectiles[id].playerId].score++
+        {
+          const hitPlayer =backEndPlayers[playerId];;
+          //hitPlayer.score++; // Increment the score of the hit player
+          console.log(`Player ${hitPlayer.username} has been hit and died. Score: ${hitPlayer.score}`);
+  
+          // Increment the score of the shooting player
+          const shootingPlayer =  backEndPlayers[backEndProjectiles[id].playerId];
+          shootingPlayer.score++;
+  
+          console.log(`Player ${shootingPlayer.username} scored a kill. Score: ${shootingPlayer.score} (${hitPlayer.username}'s score: ${hitPlayer.score})`);
+          if(hitPlayer.score>9)
+          {
+            const params = new URLSearchParams();
+            params.append('username', hitPlayer.username);
+            params.append('score', hitPlayer.score);
 
-        console.log(backEndPlayers[backEndProjectiles[id].playerId])
-        delete backEndProjectiles[id]
-        delete backEndPlayers[playerId]
-        break
+            axios.post('https://hynasvoboda.hys.cz/ROP/zapis.php', params)
+            .then(response => {
+                    console.log('POST request successful:', response.data);
+                })
+                .catch(error => {
+                    console.error('Error making POST request:', error);
+                });
+          }
+           //backEndPlayers[backEndProjectiles[id].playerId].score++
+           //console.log(`Player ${backEndPlayers[backEndProjectiles[id].playerId].username} has been hit and died.`);
+        
+          delete backEndProjectiles[id]
+          delete backEndPlayers[playerId]
+          break
+        }
       }
     }
   }
-  
+
   io.emit('updateProjectiles', backEndProjectiles)
   io.emit('updatePlayers', backEndPlayers)
 }, 15)

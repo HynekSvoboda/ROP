@@ -108,14 +108,16 @@ socket.on('updatePlayers', (backEndPlayers) => {
   }
 
   for (const id in frontEndPlayers) {
+
     if (!backEndPlayers[id]) {
       const divToDelete = document.querySelector(`div[data-id="${id}"]`)
       divToDelete.parentNode.removeChild(divToDelete)
 
       if (id === socket.id) {
         document.querySelector('#usernameForm').style.display = 'block'
+        location.reload();
       }
-
+      
       delete frontEndPlayers[id]
     }
   }

@@ -84,7 +84,7 @@ input
 button
 {
     padding: 8px 20px;
-    width: 90px;
+    width: auto;
     font-weight: bold;
     font-size: large;
     border-radius: 100px;
@@ -92,7 +92,7 @@ button
     background-image: linear-gradient(
         to right,
         rgb(81, 255, 0),
-        rgb(0, 0, 0)
+        rgb(105, 105, 105)
     );
     color: #ffffff;
     cursor: pointer;
@@ -101,5 +101,27 @@ button
 .buttonumisteni
 {
     text-align: center; 
-    margin-top: 8px
+    margin-top: 8px;
 }
+.buttonumisteni2
+{
+    position: absolute;
+    bottom: 0;
+    top:50px;
+    right:50px;
+}
+
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: bold;
+    background-image: linear-gradient(
+        to right,
+        rgb(81, 255, 0),
+        rgb(105, 105, 105)
+    );
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+  }
