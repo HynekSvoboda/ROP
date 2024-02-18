@@ -6,14 +6,20 @@ const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server, { pingInterval: 2000, pingTimeout: 5000 })
-const cors =require("cors");
 const port = 8080
 
 app.use(express.static('public'))
-app.use(cors())
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 })
+
+const corsOptions = {
+  origin: 'http://172.105.250.91:8080/',  // or specify your frontend origin like 'http://yourfrontend.com'
+  methods: 'POST',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 
 const backEndPlayers = {}
 const backEndProjectiles = {}
