@@ -120,6 +120,7 @@ button
         rgb(81, 255, 0),
         rgb(105, 105, 105)
     );
+    user-select: none;
     color: #ffffff;
     cursor: pointer;
     text-decoration: none;
