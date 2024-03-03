@@ -42,5 +42,19 @@
     <script src="./js/classes/Projectile.js"></script>
     <script src="./js/frontend.js"></script>
     <script src="./js/eventListeners.js"></script>
+
+      <script>
+    window.onload = function () {
+      var savedUsername = localStorage.getItem('savedUsername');
+      if (savedUsername) {
+        document.getElementById('usernameInput').value = savedUsername;
+      }
+    };
+
+    document.getElementById('usernameForm').addEventListener('submit', function (event) {
+      var username = document.getElementById('usernameInput').value;
+      localStorage.setItem('savedUsername', username);
+    });
+  </script>
   </body>
 </html>
