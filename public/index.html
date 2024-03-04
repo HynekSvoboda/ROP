@@ -53,7 +53,9 @@
 
     document.getElementById('usernameForm').addEventListener('submit', function (event) {
       var username = document.getElementById('usernameInput').value;
-      localStorage.setItem('savedUsername', username);
+      if (username.length <= 8) {
+        localStorage.setItem('savedUsername', username);
+      }
     });
   </script>
   </body>
