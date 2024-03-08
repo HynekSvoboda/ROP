@@ -244,6 +244,8 @@ document.querySelector('#usernameForm').addEventListener('submit', (event) => {
     width: canvas.width,
     height: canvas.height,
     devicePixelRatio,
-    username: document.querySelector('#usernameInput').value
+    const inputValue = document.querySelector('#usernameInput').value,
+    username: inputValue.length > 8 ? inputValue.substring(0, 8) : inputValue
+    
   })
 })
