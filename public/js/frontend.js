@@ -239,12 +239,15 @@ window.addEventListener('keyup', (event) => {
 
 document.querySelector('#usernameForm').addEventListener('submit', (event) => {
   event.preventDefault()
+  const rawUsername = document.querySelector('#usernameInput').value
+  const truncatedUsername = rawUsername.slice(0, 8)
   document.querySelector('#usernameForm').style.display = 'none'
+  
   socket.emit('initGame', {
     width: canvas.width,
     height: canvas.height,
     devicePixelRatio,
-    username: document.querySelector('#usernameInput').value
+    username: truncatedUsername
     
   })
 })
