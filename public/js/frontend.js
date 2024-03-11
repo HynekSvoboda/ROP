@@ -245,7 +245,7 @@ function sanitizeAndExtractText(html) {
 document.querySelector('#usernameForm').addEventListener('submit', (event) => {
   event.preventDefault()
   const rawUsername = sanitizeAndExtractText(usernameInput.value);
-  const truncatedUsername = rawUsername.slice(0, 8);
+  const truncatedUsername = rawUsername.slice(0, 8) || "Guest";
   document.querySelector('#usernameForm').style.display = 'none'
   
   socket.emit('initGame', {
