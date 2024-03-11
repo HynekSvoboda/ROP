@@ -237,10 +237,15 @@ window.addEventListener('keyup', (event) => {
   }
 })
 
+function sanitizeAndExtractText(html) {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || "";
+}
+
 document.querySelector('#usernameForm').addEventListener('submit', (event) => {
   event.preventDefault()
-  const rawUsername = document.querySelector('#usernameInput').value
-  const truncatedUsername = rawUsername.slice(0, 8)
+  const rawUsername = sanitizeAndExtractText(usernameInput.innerHTML);
+  const truncatedUsername = rawUsername.slice(0, 8);
   document.querySelector('#usernameForm').style.display = 'none'
   
   socket.emit('initGame', {
