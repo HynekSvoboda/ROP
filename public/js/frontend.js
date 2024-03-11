@@ -244,7 +244,7 @@ function sanitizeAndExtractText(html) {
 
 document.querySelector('#usernameForm').addEventListener('submit', (event) => {
   event.preventDefault()
-  const rawUsername = sanitizeAndExtractText(usernameInput.innerHTML);
+  const rawUsername = sanitizeAndExtractText(usernameInput.value);
   const truncatedUsername = rawUsername.slice(0, 8);
   document.querySelector('#usernameForm').style.display = 'none'
   
