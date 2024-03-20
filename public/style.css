@@ -6,7 +6,7 @@ body
     margin: 0;
     background: #000000;
     display: flex; 
-    margin-top:5%;
+    margin-top:10%;
     align-items: center; 
     justify-content: center;
 }
