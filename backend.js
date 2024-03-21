@@ -141,7 +141,6 @@ setInterval(() => {
         backEndProjectiles[id].y - backEndPlayer.y
       )
 
-      // collision detection
       if (
         DISTANCE < PROJECTILE_RADIUS + backEndPlayer.radius &&
         backEndProjectiles[id].playerId !== playerId
@@ -149,10 +148,10 @@ setInterval(() => {
         if (backEndPlayers[backEndProjectiles[id].playerId])
         {
           const hitPlayer =backEndPlayers[playerId];;
-          //hitPlayer.score++; // Increment the score of the hit player
+
           console.log(`Player ${hitPlayer.username} has been hit and died. Score: ${hitPlayer.score}`);
   
-          // Increment the score of the shooting player
+
           const shootingPlayer =  backEndPlayers[backEndProjectiles[id].playerId];
           shootingPlayer.score++;
   
