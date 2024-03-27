@@ -28,6 +28,7 @@ canvas
         font-size: larger;
         top: 200px;
         left: 0;
+         user-select: none;
         color:#ffffff;
     }
 }
@@ -36,6 +37,7 @@ canvas
         position: absolute;
         font-size: larger;
         bottom: 0;
+        user-select: none;
         color:#ffffff;
     }
 }
@@ -44,6 +46,7 @@ canvas
         font-size: larger;
         position: absolute;
         top: 200px;
+        user-select: none;
         left: 150px;
         color:#ffffff;
     }
